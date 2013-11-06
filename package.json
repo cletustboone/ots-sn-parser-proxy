@@ -1,0 +1,9 @@
+{
+  "name": "ots-sn-parser-proxy",
+  "version": "0.0.0",
+  "description": "Reads output from the Sportsnetwork heading parser and spawns appropriate parser.",
+  "dependencies": {
+    "split": "~0.2.10",
+    "nopt": "~2.1.2"
+  }
+}
