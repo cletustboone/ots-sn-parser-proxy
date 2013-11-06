@@ -1,9 +1,21 @@
 {
   "name": "ots-sn-parser-proxy",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Reads output from the Sportsnetwork heading parser and spawns appropriate parser.",
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cletustboone/ots-sn-parser-proxy.git"
+  },
+  "bin": {
+    "ots-parser-proxy": "bin/proxy.js"
+  },
   "dependencies": {
     "split": "~0.2.10",
     "nopt": "~2.1.2"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-release": "~0.6.0"
   }
 }
