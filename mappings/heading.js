@@ -43,6 +43,7 @@ exports.mlb = function( headingClean ) {
 
     // Statistics files. All different kinds.
     case "X":
+
       if ( remainder == "SKED" ) { return "schedule"; }
       else if ( remainder == "INDSTATS-FULL-" ) { return "indivstats"; }
       else if ( remainder == "TEAMSTATS-" ) { return "teamstats"; }
@@ -79,17 +80,50 @@ exports.nfl = function( headingClean ) {
   remainder = exports.remainder( headingClean );
 
   switch( exports.thirdPos( headingClean ) ) {
+    case "B":
+      if ( exports.isInactives( remainder ) ) { return "inactives"; }
+      return "NO_PARSE";
+      break;
+    case "D":
+      if ( exports.isRecap( remainder ) ) { return "recap"; }
+      return "NO_PARSE";
+      break;
     case "J":
       return "jfile";
-      break
+      break;
     case "P":
       return "partial-score-update";
       break;
     case "i":
       return "injury-update";
       break;
+    case "I":
+      return "injury-by-division";
+      break;
     case "L":
-      if ( remainder == "NFL-WEEKLY-SCHEDULE" ) { return "schedule"; }
+      if ( remainder == "NFL-WEEKLY-SCHEDULE" ) { return "weekly-schedule"; }
+      if ( remainder == "NFL-EXTENDED-STANDINGS" ) { return "extended-standings"; }
+      if ( remainder == "NFL-STANDINGS" ) { return "standings"; }
+      return "NO_PARSE";
+      break;
+
+    case "O":
+      return "odds";
+      break;
+
+    // Statistics. There are a ton.
+    case "X":
+      if ( exports.isYearly( remainder ) ) { return "yearly-schedule"; }
+      if ( exports.isSched( remainder ) ) { return "sched"; }
+      if ( exports.isSked( remainder ) ) { return "team-sked"; }
+      if ( exports.isBoxCombined( remainder ) ) { return "box-combined"; }
+      if ( exports.isLeaders( remainder ) ) { return "leaders"; }
+      if ( exports.isDepth( remainder ) ) {return "depth-chart"; }
+      if ( exports.isBest( remainder ) ) { return "best"; }
+      if ( exports.isRoster( remainder ) ) { return "roster"; }
+      if ( exports.isTeamStats( remainder ) ) { return "teamstats"; }
+
+      return "misc-stats";
       break;
     default:
       return "NO_PARSE";
@@ -108,4 +142,48 @@ exports.fourthPos = function( headingClean ) {
 
 exports.remainder = function( headingClean ) {
   return headingClean.slice(4);
+};
+
+exports.isInactives = function( remainder ) {
+  return /INACTIVES$/.test( remainder );
+};
+
+exports.isRecap = function( remainder ) {
+  return /^RECAP/.test( remainder );
+};
+
+exports.isYearly = function( remainder ) {
+  return /YEARLY$/.test( remainder );
+};
+
+exports.isSched = function( remainder ) {
+  return /SCHED$/.test( remainder );
+};
+
+exports.isSked = function( remainder ) {
+  return /SKED$/.test( remainder );
+};
+
+exports.isBoxCombined = function( remainder ) {
+  return /^BOX(.*)COMBINED$/.test( remainder );
+};
+
+exports.isLeaders = function( remainder ) {
+  return /LEADERS$/.test( remainder );
+};
+
+exports.isDepth = function( remainder ) {
+  return /^DEPTH/.test( remainder );
+};
+
+exports.isBest = function( remainder ) {
+  return /BEST$/.test( remainder );
+};
+
+exports.isRoster = function( remainder ) {
+  return /^ROSTER/.test( remainder );
+};
+
+exports.isTeamStats = function( remainder ) {
+  return /^TEAMSTATS/.test( remainder );
 };
