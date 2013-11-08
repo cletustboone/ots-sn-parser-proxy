@@ -10,10 +10,10 @@ proxy;
 if ( !options.sport ) {
   console.log("Need to know what sport you'd like to monitor. Use option --sport (nfl|mlb)");
   process.exit(1);
-} else if ( !options["parser-path"] ) {
-  console.log("Where is the parser? Use option --parser-path");
-  process.exit(1);
 } else {
+  if ( !options["parser-path"] ) {
+    options["parser-path"] = "~/Dropbox/12c/parser-sportsnetwork";
+  }
   proxy = new Proxy( options );
 
   process.stdin
