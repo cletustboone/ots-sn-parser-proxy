@@ -157,6 +157,10 @@ exports.isRecap = function( remainder ) {
   return /^RECAP/.test( remainder );
 };
 
+exports.isPreview = function( remainder ) {
+  return /^PREVIEW/.test( remainder );
+};
+
 exports.isYearly = function( remainder ) {
   return /YEARLY$/.test( remainder );
 };
