@@ -111,6 +111,11 @@ exports.nfl = function( headingClean ) {
       return "odds";
       break;
 
+    case "V":
+      if ( exports.isPreview( remainder ) ) { return "preview"; }
+      return "NO_PARSE";
+      break;
+
     // Statistics. There are a ton.
     case "X":
       if ( exports.isYearly( remainder ) ) { return "yearly-schedule"; }
