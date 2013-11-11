@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "split": "~0.2.10",
-    "nopt": "~2.1.2"
+    "nopt": "~2.1.2",
+    "bunyan": "~0.22.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
