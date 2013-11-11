@@ -11,6 +11,11 @@ if ( !options["parser-path"] ) {
   options["parser-path"] = "~/Dropbox/12c/parser-sportsnetwork";
 }
 
+if ( !options.logs ) {
+  console.log("need to know path to log file. Use option --logs");
+  process.exit(1);
+}
+
 proxy = new Proxy( options );
 
 process.stdin
