@@ -82,7 +82,7 @@ exports.parsers = function( sport, headingContent ) {
 
     case "N":
       // MLB only
-      if ( /PLAYER\-OF\-WEEK/.test.( remainder ) ) { return "player-of-the-week"; }
+      if ( /PLAYER\-OF\-WEEK/.test( remainder ) ) { return "player-of-the-week"; }
       return "NO_PARSE";
       break;
 
