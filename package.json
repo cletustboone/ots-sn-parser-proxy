@@ -1,6 +1,6 @@
 {
   "name": "ots-sn-parser-proxy",
-  "version": "1.0.0-2",
+  "version": "1.0.0-3",
   "description": "Reads output from the Sportsnetwork heading parser and spawns appropriate parser.",
   "preferGlobal": true,
   "repository": {
