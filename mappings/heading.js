@@ -27,14 +27,14 @@ exports.parsers = function( sport, headingContent ) {
       if ( /^ROSTER/.test( remainder ) ) { return "roster"; }
       if ( /^PROBS/.test( remainder) ) { return "probables"; }
 
-      return "NO_PARSE";
+      return "extra";
       break;
 
     case "C":
 
     case "D":
       if ( exports.isRecap( remainder ) ) { return "recap"; }
-      return "NO_PARSE";
+      return "extra";
       break;
 
     case "E":
@@ -75,7 +75,7 @@ exports.parsers = function( sport, headingContent ) {
       if ( remainder == "MLB-STANDINGS" ) { return "standings"; }
       if ( remainder == "MLB-WEEKLY-SCHEDULE" ) { return "weekly-schedule"; }
       if ( remainder == "MLB-EXTENDED-STANDINGS" ) { return "extended-standings"; }
-      return "NO_PARSE";
+      return "extra";
       break;
 
     case "M":
@@ -83,13 +83,13 @@ exports.parsers = function( sport, headingContent ) {
     case "N":
       // MLB only
       if ( /PLAYER\-OF\-WEEK/.test( remainder ) ) { return "player-of-the-week"; }
-      return "NO_PARSE";
+      return "extra";
       break;
 
     case "O":
       if ( /^ODDS/.test( remainder ) ) { return "odds"; }
       if ( /^MLB\-EARLY\-LINE/.test( remainder ) ) { return "early-line"; }
-      return "NO_PARSE";
+      return "extra";
       break;
 
     case "P":
@@ -111,7 +111,7 @@ exports.parsers = function( sport, headingContent ) {
 
     case "V":
       if ( exports.isPreview( remainder ) ) { return "preview"; }
-      return "NO_PARSE";
+      return "extra";
       break;
 
     case "W":
@@ -154,7 +154,7 @@ exports.parsers = function( sport, headingContent ) {
     case "Z":
 
     default:
-      return "NO_PARSE";
+      return "extra";
       break;
   }
 
