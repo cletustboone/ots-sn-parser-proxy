@@ -1,5 +1,6 @@
 module.exports = {
   "AB": "nfl",
   "AA": "mlb",
-  "AE": "ncaabb"
+  "AE": "ncaabb",
+  "AJ": "cfl"
 };
