@@ -15,7 +15,7 @@ exports.parsers = function( sport, headingContent ) {
   var
   headingClean = exports.cleanHeading( headingContent ),
   remainder = exports.remainder( headingClean );
-
+  
   switch( exports.thirdPos( headingClean ) ) {
     case "A":
 
@@ -24,9 +24,14 @@ exports.parsers = function( sport, headingContent ) {
       if ( exports.isInactives( remainder ) ) { return "inactives"; }
 
       // MLB
-      if ( /ROSTER/.test( remainder ) ) { return "roster"; }
+      if ( /^ROSTER/.test( remainder ) ) { return "roster"; }
       if ( /^PROBS/.test( remainder) ) { return "probables"; }
       if ( /LINEUP/.test( remainder ) ) { return "lineups"; }
+
+      // CFL
+      if (sport === 'cfl') {
+      	if ( /ROSTER/.test(remainder) ) { return "roster"; }
+      }
 
       return "extra";
       break;
@@ -76,11 +81,6 @@ exports.parsers = function( sport, headingContent ) {
       if ( remainder == "MLB-STANDINGS" ) { return "standings"; }
       if ( remainder == "MLB-WEEKLY-SCHEDULE" ) { return "weekly-schedule"; }
       if ( remainder == "MLB-EXTENDED-STANDINGS" ) { return "extended-standings"; }
-
-      // CFL
-      if ( remainder == "CFL-WEEKLY-SCHEDULE" ) { return "weekly-schedule"; }
-      if ( remainder == "CFL-EXTENDED-STANDINGS" ) { return "extended-standings"; }
-      if ( remainder == "CFL-STANDINGS" ) { return "standings"; }
       return "extra";
       break;
 
@@ -89,13 +89,11 @@ exports.parsers = function( sport, headingContent ) {
     case "N":
       // MLB only
       if ( /PLAYER\-OF\-WEEK/.test( remainder ) ) { return "player-of-the-week"; }
-      // CFL
-      if ( exports.isRecap( remainder ) ) { return "recap"; }
       return "extra";
       break;
 
     case "O":
-      if ( /ODDS/.test( remainder ) ) { return "odds"; }
+      if ( /^ODDS/.test( remainder ) ) { return "odds"; }
       if ( /^MLB\-EARLY\-LINE/.test( remainder ) ) { return "early-line"; }
       return "extra";
       break;
