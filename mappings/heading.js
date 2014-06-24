@@ -26,6 +26,7 @@ exports.parsers = function( sport, headingContent ) {
       // MLB
       if ( /ROSTER/.test( remainder ) ) { return "roster"; }
       if ( /^PROBS/.test( remainder) ) { return "probables"; }
+      if ( /LINEUP/.test( remainder ) ) { return "lineups"; }
 
       return "extra";
       break;
@@ -145,7 +146,6 @@ exports.parsers = function( sport, headingContent ) {
       // MLB Stuff
       if ( /^INDSTATS\-FULL/.test( remainder ) ) { return "indivstats"; }
       if ( /^PRESTATS/.test( remainder ) ) { return "indivstats"; }
-      if ( /LINEUP/.test( remainder ) ) { return "lineups"; }
       if ( /^CARD/.test( remainder ) ) { return "game-card"; }
       if ( /^BOX\-/.test( remainder ) ) { return "boxscore"; }
       if ( /^MATCHUP\-/.test( remainder ) ) {return "matchup"; }
