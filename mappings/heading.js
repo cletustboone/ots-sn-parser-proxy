@@ -15,7 +15,7 @@ exports.parsers = function( sport, headingContent ) {
   var
   headingClean = exports.cleanHeading( headingContent ),
   remainder = exports.remainder( headingClean );
-
+  
   switch( exports.thirdPos( headingClean ) ) {
     case "A":
 
@@ -27,6 +27,11 @@ exports.parsers = function( sport, headingContent ) {
       if ( /^ROSTER/.test( remainder ) ) { return "roster"; }
       if ( /^PROBS/.test( remainder) ) { return "probables"; }
       if ( /LINEUP/.test( remainder ) ) { return "lineups"; }
+
+      // CFL
+      if (sport === 'cfl') {
+      	if ( /ROSTER/.test(remainder) ) { return "roster"; }
+      }
 
       return "extra";
       break;
